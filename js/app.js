@@ -90,6 +90,16 @@ function iniciarApp(){
 
     }
 
+    function seleccionarReceta(id){
+        const url = `https://themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+        fetch(url)
+            .then(respuesta => respuesta.json())
+            .then(resultado => mostrarRecetasModal(resultado.meals[0]))
+    }
+
+    function mostrarRecetasModal(){
+
+    }
 
     function limpiarHTML(selector){
         while(resultado.firstChild){
@@ -97,9 +107,7 @@ function iniciarApp(){
         }
     }
 
-    function seleccionarReceta(id){
-        const url = `https://themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
-    }
+    
 }
 
 document.addEventListener(`DOMContentLoaded`, iniciarApp);
