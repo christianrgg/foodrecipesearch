@@ -36,6 +36,14 @@ function iniciarApp(){
     }
 
     function mostrarRecetas(recetas = []){
+        
+        limpiarHTML(resultado);
+
+        const heading = document.createElement(`h2`);
+        heading.classList.add(`text-center`,`text-black`,`my-5`);
+        heading.textContent = recetas.length ? `Resultados`: `No hay resultados`;
+        resultado.appendChild(heading);
+
         //Iterar en los comentarios
         recetas.forEach(receta =>{
             console.log(receta);
@@ -73,20 +81,17 @@ function iniciarApp(){
             recetaContenedor.appendChild(recetaCard);
 
             resultado.appendChild(recetaContenedor);
-
-            // .card
-            //     img
-            //     .card-body
-            //         h3 
-            //         button
-
-
-
             console.log(recetaHeading);    
         })
 
     }
 
+
+    function limpiarHTML(selector){
+        while(resultado.firstChild){
+            selector.removeChild(selector.firstChild);
+        }
+    }
 }
 
 document.addEventListener(`DOMContentLoaded`, iniciarApp);
