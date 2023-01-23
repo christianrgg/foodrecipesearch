@@ -100,6 +100,7 @@ function iniciarApp(){
 
     function mostrarRecetasModal(receta){
         
+        console.log(receta);
         const {idMeal, strInstructions, strMeal, strMealThumb} = receta;
         
         //Añadir contenido al modal
@@ -111,8 +112,29 @@ function iniciarApp(){
             <img class="img-fluid" src="${strMealThumb}" alt="receta ${strMeal}" />
             <h3 clas="my-3">Instrucciones</h3>
             <p>${strInstructions}</p>
+            <h3 class="my-3">Ingredientes y cantidades</h3>
         `;
-        
+
+
+        const listGroup = document.createElement(`ul`);
+        listGroup.classList.add(`list-group`);
+        //Mostrar ingredientes y cantidades
+        for (let i = 1; i<=20; i++){
+            
+            if(receta[`strIngredient${i}`]){
+                const ingrediente = receta[`strIngredient${i}`];
+                const cantidad = receta[`strMeasure${i}`];
+
+                const ingredienteLi = document.createElement(`li`);
+                ingredienteLi.classList.add(`list-group-item`);
+                ingredienteLi.textContent = `${ingrediente} - ${cantidad}`;
+
+                listGroup.appendChild(ingredienteLi);
+            }
+        }
+
+        modalBody.appendChild(listGroup);
+
         //Muestra el modal
         modal.show();
     }
